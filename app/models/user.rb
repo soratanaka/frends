@@ -5,9 +5,7 @@ class User < ApplicationRecord
                     before_validation { email.downcase! }
                     has_secure_password
                     validates :password, length: { minimum: 6 }
-  belongs_to:user
+  has_many :pictures, dependent: :destroy
 
-  def user
-    return User.find_by(id: self.user_id)
-  end
+
 end
