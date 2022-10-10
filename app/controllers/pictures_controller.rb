@@ -34,10 +34,8 @@ class PicturesController < ApplicationController
     respond_to do |format|
       if @picture.save
         format.html { redirect_to picture_url(@picture), notice: "Picture was successfully created." }
-        format.json { render :show, status: :created, location: @picture }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -47,10 +45,8 @@ class PicturesController < ApplicationController
     respond_to do |format|
       if @picture.update(picture_params)
         format.html { redirect_to picture_url(@picture), notice: "Picture was successfully updated." }
-        format.json { render :show, status: :ok, location: @picture }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -61,7 +57,6 @@ class PicturesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to pictures_url, notice: "Picture was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
@@ -73,6 +68,6 @@ class PicturesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def picture_params
-      params.require(:picture).permit(:image, :user_id, :content).merge(user_id:current_user.id)
+      params.require(:picture).permit(:image, :image_cache, :content).merge(user_id:current_user.id)
     end
 end
