@@ -2,7 +2,7 @@
 
 <h1>Pictures</h1>
 
-<table>
+<table class="post_list">
   <tr>
     <th>名前</th>
     <th>内容</th>
@@ -10,10 +10,10 @@
     </tr>
 
 <% @pictures.each do |post| %>
-  <tr>
-    <td><%= post.user.name %></td>
-    <td><%= post.content %>
-    <td><%= image_tag post.image.url, style:'width:400px;height:240px' if post.image_url %></td>
+  <tr class="post_all">
+    <td><p class="post_name"><%= post.user.name %></p></td>
+    <td class="post.content"><%= post.content %></td>
+    <td class="post_img"><%= image_tag post.image.url, style:'width:400px;height:240px' if post.image_url %></td>
     <td><%= link_to '詳細を確認する', picture_path(post.id), class: "btn btn-secondary" %></td>
     <td><%= link_to 'ポストを編集する', edit_picture_path(post.id), data: { confirm: '本当に編集していいですか？' }, class: "btn btn-dark" %>
     </td>
